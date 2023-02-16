@@ -1,6 +1,23 @@
 
 
-// operator functions
+// operator function
+
+function operate (op,a,b) {
+    switch (op){
+        case "+":
+            return add (a,b);
+            break;
+        case "-":
+            return subtract(a,b);
+            break;
+        case "x":
+            return multiply(a, b);
+            break;
+        case "/":
+            return divide(a, b);
+            break;
+    }
+}
 
 // addition function
 

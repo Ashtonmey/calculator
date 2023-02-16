@@ -1,4 +1,24 @@
+// add eventlisteners to each button
 
+let number = document.querySelector(`#display-number`);
+
+const buttons = document.querySelectorAll(`.number`);
+
+buttons.forEach((button) => {
+
+    button.addEventListener('click', function(e) {
+        updateDisplay(e);
+    });
+
+});
+
+
+
+// update display on button click fuction
+
+function updateDisplay (e) {
+    console.log(e);
+}
 
 // operator function
 

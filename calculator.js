@@ -1,3 +1,7 @@
+// Display variable
+
+let displayNumber = "";
+
 // add eventlisteners to each button
 
 let number = document.querySelector(`#display-number`);
@@ -12,12 +16,12 @@ buttons.forEach((button) => {
 
 });
 
-
-
 // update display on button click fuction
 
 function updateDisplay (e) {
-    console.log(e);
+    const display = document.querySelector(`#display-number`);
+    displayNumber = displayNumber.concat(e.target.id);
+    display.textContent = displayNumber;   
 }
 
 // operator function
@@ -26,16 +30,12 @@ function operate (op,a,b) {
     switch (op){
         case "+":
             return add (a,b);
-            break;
         case "-":
             return subtract(a,b);
-            break;
         case "x":
             return multiply(a, b);
-            break;
         case "/":
             return divide(a, b);
-            break;
     }
 }
 

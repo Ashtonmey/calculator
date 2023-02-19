@@ -1,9 +1,10 @@
 // Declare variables
 
 let displayNumber = ""; // intitial dsiplay number variable
-let operatorChoice = null; // Initial declare of operator choice
+let operators = [0]; // Initial declare of operator choice
 let operatorCount = 0; // counts the number of times and operator has been clicked
-let numbers = [];
+let numbers = [""];
+let numberCount = 0;
 
 
 // add eventlisteners to each number button
@@ -25,6 +26,13 @@ clearButton.addEventListener('click', () => {
     clear();
 });
 
+// add event listener to equal button
+
+const calculateButton = document.querySelector(`#calculate`);
+calculateButton.addEventListener('click', (e) => {
+    calculate(numbers, operators, e);
+});
+
 // add event listeners to operator buttons
 
 const opButtons = document.querySelectorAll (`.operator`);
@@ -41,14 +49,39 @@ opButton.addEventListener('click', (e) => {
     
 });
 
+function calculate (num, op, e) {
+    saveNumber(e);
+    console.log("Calculation pending...");
+
+    let result = 0;
+
+    for(i = 0; i< op.length; i++)
+    {
+        if (i == 0)
+        {
+            result = operate(op[i],num[i],num[i+1]);
+            
+        }
+        else {
+            result = operate(op[i],result,num[i+1]);
+        }
+        
+    }
+    console.log(result)
+    
+    const display = document.querySelector(`#display-number`);
+    display.textContent = result;
+
+}
 
 // clear function 
 
 function clear () {
     displayNumber = "";
-    operatorChoice = null;
+    operators = [];
     operatorCount = 0;
     numbers = [];
+    numberCount = 0;
 
     const display = document.querySelector(`#display-number`);
     display.textContent = "0";
@@ -66,15 +99,16 @@ function updateDisplay (e) {
 // save operator function
 
 function saveOperator (e){
-    operatorChoice = e.target.id;
-    console.log(operatorChoice);
+    operators[operatorCount] = e.target.id;
+    console.log(operators);
+    operatorCount++;
 }
 
 // save number function
 
 function saveNumber (e){
-    numbers[operatorCount] = displayNumber;    
-    operatorCount++;
+    numbers[numberCount] = displayNumber;    
+    numberCount++;
     clearDisplay();
     console.log(numbers);
 }
@@ -91,7 +125,7 @@ function clearDisplay () {
 
 function operate (op,a,b) {
     switch (op){
-        case "+":
+        case "+":            
             return add (a,b);
         case "-":
             return subtract(a,b);
@@ -104,8 +138,8 @@ function operate (op,a,b) {
 
 // addition function
 
-function add(a, b) {
-    return a + b;
+function add(a, b) {    
+    return +a + +b;
 }
 
 // subtraction fuction

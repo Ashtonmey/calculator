@@ -1,11 +1,10 @@
-// Declare variables
+// declare variables
 
-let displayNumber = ""; // intitial dsiplay number variable
+let displayNumber = ""; // initial dsiplay number variable
 let operators = [0]; // Initial declare of operator choice
 let operatorCount = 0; // counts the number of times and operator has been clicked
 let numbers = [""];
 let numberCount = 0;
-
 
 // add eventlisteners to each number button
 
@@ -51,8 +50,7 @@ opButton.addEventListener('click', (e) => {
 
 function calculate (num, op, e) {
     saveNumber(e);
-    console.log("Calculation pending...");
-
+    
     let result = 0;
 
     for(i = 0; i< op.length; i++)
